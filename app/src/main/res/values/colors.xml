@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--主题色-->
+    <color name="theme_color">#0078A2</color>
+    <color name="half_theme_color">#860078A2</color>
+    <color name="bg_theme_item_color">#22000000</color>
+    <color name="actionbar_title_color">#FFFFFF</color>
+    <color name="theme_divide_color">#cccccc</color>
+    <color name="theme_bg_color">#F0F0F0</color>
+    <color name="theme_bottom_btn">#29262D</color>
+
+    <!--基本色-->
+    <color name="white">#FFFFFF</color>
+    <color name="half_white">#33FFFFFF</color>
+    <color name="black">#ff000000</color>
+    <color name="blue">#ff0000ff</color>
+    <color name="green">#ff00ff00</color>
+    <color name="green_light">#7cd12e</color>
+    <color name="gray">#ff888888</color>
+    <color name="gray_light">#ffcccccc</color>
+    <color name="gray_dark">#938192</color>
+    <color name="red">#ffff0000</color>
+    <color name="transparent">#00000000</color>
+    <color name="yellow">#ffffff00</color>
+    <color name="half_transparent">#33000000</color>
+
+    <!--字体颜色-->
+    <color name="text_black">#333333</color>
+    <color name="text_black_light">#666666</color>
+    <color name="text_black_light_light">#999999</color>
+</resources>
