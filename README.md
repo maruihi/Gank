@@ -1,2 +1,2 @@
-# FrameDemo
-框架Demo
+# Gank
+干货集中营 Android端App
