@@ -16,6 +16,7 @@ import com.mr.gank.utils.helper.DebugHelper;
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * BaseFragment 封装
@@ -26,6 +27,7 @@ public abstract class BaseFragment extends Fragment {
 
     public View rootView;
     protected Context mContext;
+    private Unbinder bind;
 
     protected final <T extends View> T findViewById(@IdRes int id) {
         return (T) rootView.findViewById(id);
@@ -37,7 +39,7 @@ public abstract class BaseFragment extends Fragment {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
-        ButterKnife.unbind(this);
+        bind.unbind();
     }
 
     @Nullable
@@ -47,7 +49,7 @@ public abstract class BaseFragment extends Fragment {
         int layoutId = getLayoutId();
         if (layoutId > 0) {
             rootView = inflater.inflate(layoutId, container, false);
-            ButterKnife.bind(this,rootView);
+            bind = ButterKnife.bind(this, rootView);
         }else {
             //没有提供ViewId
             DebugHelper.throwIllegalState("没有提供正确的LayoutId");

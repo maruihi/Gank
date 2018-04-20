@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@color/theme_bg_color"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="54dp"
+        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView
@@ -25,16 +27,17 @@
 
         <ImageView
             android:id="@+id/iv_title_collection_folder"
-            android:layout_width="54dp"
+            android:layout_width="32dp"
             android:layout_height="54dp"
             android:scaleType="center"
             android:src="@drawable/ic_collection_folder" />
 
         <ImageView
             android:id="@+id/iv_title_calendar_search"
-            android:layout_width="54dp"
+            android:layout_width="32dp"
             android:layout_height="54dp"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="10dp"
             android:scaleType="center"
             android:src="@drawable/ic_calendar_search" />
     </LinearLayout>
@@ -44,18 +47,23 @@
         android:layout_height="@dimen/theme_divide_height"
         android:background="@color/theme_divide_color" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tl"
+    <com.mr.gank.widget.colortrackview.ColorTrackTabLayout
+        android:id="@+id/tl_color"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         app:layout_scrollFlags="scroll"
-        app:tabIndicatorHeight="1.0dp"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/text_black" />
+        android:background="@color/white"
+        app:tabIndicatorHeight="1dp"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="@color/text_black_light"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabMode="scrollable"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:overScrollMode="never"/>
 </LinearLayout>
 

@@ -8,7 +8,6 @@ import com.mr.gank.AppManager;
 import com.mr.gank.core.BaseActivity;
 import com.mr.gank.net.httplibrary.exception.LoginException;
 import com.mr.gank.net.httplibrary.exception.RequestErrorException;
-import com.mr.gank.ui.me.LoginActivity;
 import com.mr.gank.utils.DeviceUtil;
 import com.mr.gank.utils.MLog;
 import com.mr.gank.utils.ToastUtil;
@@ -69,7 +68,7 @@ public abstract class SubscriberCommon<T> extends Subscriber<T> {
 
        if (e instanceof LoginException) {
             //未登录跳转到登录页面
-            toReLogin();
+//            toReLogin();
 
         } else if (e instanceof ConnectTimeoutException || e instanceof SocketTimeoutException) {
             Toast.makeText(context, "请求超时!", Toast.LENGTH_SHORT).show();
@@ -85,21 +84,21 @@ public abstract class SubscriberCommon<T> extends Subscriber<T> {
        }
     }
 
-    /**
-     * To login.
-     */
-    private void toReLogin() {
-        BaseActivity cutTopActivity = (BaseActivity) AppManager.getInstance().getCurrentActivity();
-        if (cutTopActivity == null || cutTopActivity instanceof LoginActivity) {
-            MLog.i("toReLogin:%s", "已经在登录界面,不进行跳转了");
-            return;
-        }
-        Intent intent = new Intent(context, LoginActivity.class);
-        //intent.putExtra(BaseActivity.KEY_ERROR_MESSAGE, message); //后续扩展用
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        context.startActivity(intent);
-        if (context instanceof BaseActivity) {
-            ((BaseActivity) context).overridePendingTransitionEnter();
-        }
-    }
+//    /**
+//     * To login.
+//     */
+//    private void toReLogin() {
+//        BaseActivity cutTopActivity = (BaseActivity) AppManager.getInstance().getCurrentActivity();
+//        if (cutTopActivity == null || cutTopActivity instanceof LoginActivity) {
+//            MLog.i("toReLogin:%s", "已经在登录界面,不进行跳转了");
+//            return;
+//        }
+//        Intent intent = new Intent(context, LoginActivity.class);
+//        //intent.putExtra(BaseActivity.KEY_ERROR_MESSAGE, message); //后续扩展用
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        context.startActivity(intent);
+//        if (context instanceof BaseActivity) {
+//            ((BaseActivity) context).overridePendingTransitionEnter();
+//        }
+//    }
 }

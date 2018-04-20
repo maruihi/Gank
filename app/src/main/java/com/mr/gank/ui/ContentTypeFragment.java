@@ -14,25 +14,27 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * 关注界面
- * Created by MR on 2018/4/19.
+ * 内容分类fragment
+ * Created by MR on 2018/4/20.
  */
 
-public class FollowFragment extends BaseFragment {
+public class ContentTypeFragment extends BaseFragment {
+
+
     @BindView(R.id.tv_content)
     TextView tvContent;
 
-    public static FollowFragment newInstance(String title) {
-        Bundle args = new Bundle();
-        args.putString("title", title);
-        FollowFragment pageFragment = new FollowFragment();
-        pageFragment.setArguments(args);
-        return pageFragment;
+    public static BaseFragment newInstance(String title) {
+        Bundle bundle = new Bundle();
+        bundle.putString("title", title);
+        ContentTypeFragment contentTypeFragment = new ContentTypeFragment();
+        contentTypeFragment.setArguments(bundle);
+        return contentTypeFragment;
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_follow;
+        return R.layout.fragment_content_type;
     }
 
     @Override
@@ -40,5 +42,4 @@ public class FollowFragment extends BaseFragment {
         Bundle bundle = getArguments();
         tvContent.setText(bundle.getString("title"));
     }
-
 }

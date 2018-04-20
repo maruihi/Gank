@@ -1,36 +1,36 @@
 package com.mr.gank.ui;
 
-import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.mr.gank.R;
 import com.mr.gank.core.BaseActivity;
 import com.mr.gank.core.BaseFragment;
+import com.mr.gank.utils.TabLayoutUtil;
+import com.mr.gank.widget.colortrackview.ColorTrackTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.tl)
-    TabLayout tl;
+    @BindView(R.id.tl_color)
+    ColorTrackTabLayout tl;
     @BindView(R.id.vp)
     ViewPager vp;
 
     private List<String> tabNames = new ArrayList<>();
-    private List<BaseFragment> fragments=new ArrayList<>();
+    private List<BaseFragment> fragments = new ArrayList<>();
+    private MyFragmentPagerAdapter pagerAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -40,6 +40,18 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreateAfter(Bundle savedInstanceState) {
         initData();
+        initView();
+    }
+
+    private void initView() {
+        tl.offsetLeftAndRight(10);
+        TabLayoutUtil.setIndicatorEqualTitle(tl);
+
+        pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), this, fragments, tabNames);
+        vp.setAdapter(pagerAdapter);
+        vp.setOffscreenPageLimit(tabNames.size());
+        tl.setupWithViewPager(vp);
+
     }
 
     private void initData() {
@@ -50,11 +62,12 @@ public class MainActivity extends BaseActivity {
         tabNames.add("瞎推荐");
         tabNames.add("扩展资源");
         tabNames.add("福利");
-        tabNames.add("App");
         tabNames.add("休息视频");
 
-        fragments.add(new FollowFragment());
-
+        fragments.add(FollowFragment.newInstance(tabNames.get(0)));
+        for (int i = 1; i < tabNames.size(); i++) {
+            fragments.add(ContentTypeFragment.newInstance(tabNames.get(i)));
+        }
 
     }
 
@@ -75,4 +88,32 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
+
+    private class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+        private List<BaseFragment> fragmentList;
+        private List<String> tabNamesList;
+
+        public MyFragmentPagerAdapter(FragmentManager fm, Context context, List<BaseFragment> fragments, List<String> tabNames) {
+            super(fm);
+            fragmentList = fragments;
+            tabNamesList = tabNames;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabNamesList.get(position);
+        }
+
+    }
+
 }
